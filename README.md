@@ -27,10 +27,6 @@ A Windows client on the `natureforce.com` Active Directory domain was compromise
 
 [Full write-up →](02-Natureforce-malicious-exe-delivery/)
 
-### 03 — [Investigation name TBD]
-*Coming soon*
-
----
 
 ## Methodology (applied to each investigation)
 
