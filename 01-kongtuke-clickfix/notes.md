@@ -1,6 +1,6 @@
 # PCAP Analysis — Kongtuke ClickFix Infection (Traffic Analysis Exercise)
 
-Independent packet-level forensic analysis of a real-world Kongtuke ClickFix infection, using a public PCAP from malware-traffic-analysis.net. Unlike the SOC Lab project (which relied on SIEM-correlated alerts), this project involved raw packet analysis with no pre-built alerts, identifying the infected host, user, and malicious infrastructure directly from traffic using Wireshark.
+Independent packet-level forensic analysis of a real-world Kongtuke ClickFix infection, using a public PCAP from malware-traffic-analysis.net. This project involved raw packet analysis with no pre-built alerts, identifying the infected host, user, and malicious infrastructure directly from traffic using Wireshark.
 
 **Source:** malware-traffic-analysis.net — "2026-09-11: Traffic Analysis Exercise: Kongtuke Rebuke!"
 **Scenario:** Kongtuke ClickFix activity against a domain-joined Windows host in an Active Directory environment
@@ -42,16 +42,10 @@ Filtered for Kerberos traffic (`kerberos`), located the AS-REQ (Authentication S
 Filtered for SAMR traffic (Security Account Manager Remote protocol), located a `QueryUserInfoResponse` packet, and expanded it to find the full display name associated with the account.
 - **Full name:** `Gabriel McDowell`
 
-**6. File extraction and hash verification**
-Used File > Export Objects (HTTP) to extract the file(s) transferred during the infection, then computed the hash and checked it against VirusTotal.
-- **Exported file name:** `[FILL: filename]`
-- **File hash (SHA256):** `[FILL: hash]`
-- **VirusTotal verdict:** `[FILL: number of vendors flagging it as malicious / malware family identified, if shown]`
-
-**7. C2 traffic**
+**6. C2 traffic**
 Identified the destination(s) the infected host communicated with following the initial infection, distinguishing beaconing/C2 behavior from normal browsing traffic.
-- **C2 IP/domain:** `[FILL: destination IP or domain]`
-- **Indicators used to identify it as C2:** `[FILL: repeated connections, suspicious domain, port, TLS SNI mismatch, etc.]`
+- **C2 IP/domain:** `IP:86.106.87.134 DOMAIN:known[.]mom-nower[.]com`
+- **Indicators used to identify it as C2:** `repeated connections, suspicious domain`
 
 ---
 
@@ -63,8 +57,7 @@ Identified the destination(s) the infected host communicated with following the 
 | Infected host MAC | 08:d4:0c:7a:29:1e |
 | Infected hostname | DESKTOP-6T17ZFM |
 | Compromised account | gmcdowell (Gabriel McDowell) |
-| Malicious file hash | [FILL] |
-| C2 destination | [FILL] |
+| C2 destination | 86.106.87.134 |
 
 ---
 
@@ -72,8 +65,7 @@ Identified the destination(s) the infected host communicated with following the 
 
 - **T1204 — User Execution:** Victim was socially engineered via a fake CAPTCHA/verification page (ClickFix technique) into manually executing attacker-provided instructions
 - **T1059 — Command and Scripting Interpreter:** Execution carried out via a pasted script/command following the ClickFix lure
-- **T1071 — Application Layer Protocol:** C2 communication observed over [FILL: HTTP/HTTPS], blending in with normal web traffic
-- **T1041 — Exfiltration Over C2 Channel:** [FILL, if applicable based on your C2 findings]
+- **T1071 — Application Layer Protocol:** C2 communication observed over HTTP, blending in with normal web traffic
 
 ---
 
