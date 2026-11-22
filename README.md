@@ -25,7 +25,7 @@ A Kongtuke ClickFix infection against a domain-joined Windows host. Identified t
 
 A Windows client on the `natureforce.com` Active Directory domain was compromised through direct delivery of a malicious executable, `runner_ilove.exe`, sent from an external server at `107.175.82.242` over port `9000`, a non-standard delivery port, unlike typical HTTP/HTTPS-based infections. The affected host (`DESKTOP-4VGYQX7`, user account `bdiaz`) was identified through standard host-fingerprinting techniques (SMB for hostname, Kerberos AS-REQ for the user account), and the delivered payload was extracted directly from the packet capture and verified via its SHA-256 hash. Unlike social-engineering-driven infections (such as ClickFix), this case centered on straightforward binary delivery to the endpoint, reinforcing the importance of monitoring unusual outbound/inbound ports and verifying any transferred executable against its hash rather than trusting its filename or source.
 
-[Full write-up →](02-Natureforece-malicious-exe-delivery/)
+[Full write-up →](02-Natureforce-malicious-exe-delivery/)
 
 ### 03 — [Investigation name TBD]
 *Coming soon*
@@ -40,20 +40,6 @@ A Windows client on the `natureforce.com` Active Directory domain was compromise
 4. Identify command-and-control (C2) traffic and distinguish it from normal browsing behavior
 5. Document IOCs, build a timeline, and map findings to MITRE ATT&CK
 6. Compare findings against the published answer key to verify accuracy
-
----
-
-## Repository Structure
-
-```
-network-forensics-pcap-analysis/
-├── README.md
-├── 01-kongtuke-clickfix/
-│   ├── notes.md
-│   └── screenshots/
-├── 02-[tbd]/
-└── 03-[tbd]/
-```
 
 ---
 
