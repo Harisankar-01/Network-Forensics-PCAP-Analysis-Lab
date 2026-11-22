@@ -71,15 +71,14 @@ Identified the destination(s) the infected host communicated with following the 
 
 ## What I Learned
 
-This was the first project in my portfolio built entirely from raw packet capture, with no SIEM alert, no pre-built detection rule, just traffic and manual investigation. Key takeaways:
+This was my first project in my portfolio built entirely from raw packet capture, with no SIEM alert, no pre-built detection rule, just traffic and manual investigation. Key takeaways:
 
 - **Host identification doesn't always come from the obvious protocols.** While IP, MAC, and hostname were found through straightforward means (Ethernet headers, SMB), identifying the actual user and their full name required digging into Active Directory authentication traffic itself, Kerberos AS-REQ for the username, and SAMR for the full display name. These are protocols rarely covered in beginner material, but are exactly what's present in real enterprise environments.
-- **File verification matters as much as detection.** Extracting a transferred file and checking its hash against VirusTotal is a basic but essential step to move from suspicion to confirmed malicious activity.
 - **C2 traffic requires pattern recognition, not just signature matching.** Unlike my SOC Lab (where Wazuh/Suricata flagged things automatically), this exercise required manually reasoning about which traffic looked like genuine command-and-control behavior.
-- This project reinforced a skill directly transferable to real SOC work: investigating a single IP from a raw capture through to full identification of host, user, and malicious infrastructure, exactly the kind of deep-dive a Tier 2/3 analyst would do after an initial alert fires.
+- This project reinforced a skill directly transferable to real SOC work: investigating a single IP from a raw capture through to full identification of host, user, and malicious infrastructure.
 
 ---
 
 ## Evidence
 
-Screenshots (Ethernet/MAC view, SMB hostname packet, Kerberos AS-REQ cname field, SAMR QueryUserInfoResponse, exported file + VirusTotal result, C2 traffic view) are in [`screenshots/`](screenshots/).
+Screenshots (Ethernet/MAC view, SMB hostname packet, Kerberos AS-REQ cname field, SAMR QueryUserInfoResponse, exported files, C2 traffic view) are in [`screenshots/`](screenshots/).
