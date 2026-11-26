@@ -20,14 +20,17 @@ A Kongtuke ClickFix infection against a domain-joined Windows host. Identified t
 
 [Full write-up →](01-kongtuke-clickfix/)
 
-### 02 —Natureforece-malicious-exe-delivery
-**Natureforce Incident — Brief Summary**
+### 02 — Natureforce (malicious-exe-delivery)
 
 A Windows client on the `natureforce.com` Active Directory domain was compromised through direct delivery of a malicious executable, `runner_ilove.exe`, sent from an external server at `107.175.82.242` over port `9000`, a non-standard delivery port, unlike typical HTTP/HTTPS-based infections. The affected host (`DESKTOP-4VGYQX7`, user account `bdiaz`) was identified through standard host-fingerprinting techniques (SMB for hostname, Kerberos AS-REQ for the user account), and the delivered payload was extracted directly from the packet capture and verified via its SHA-256 hash. Unlike social-engineering-driven infections (such as ClickFix), this case centered on straightforward binary delivery to the endpoint, reinforcing the importance of monitoring unusual outbound/inbound ports and verifying any transferred executable against its hash rather than trusting its filename or source.
 
 [Full write-up →](02-Natureforce-malicious-exe-delivery/)
 
+### 03 - Lumma in the Room-ah (Lumma Stealer Infection)
 
+Starting from a SOC alert for Lumma Stealer fingerprinting activity on a specific external IP and port, I used the provided packet capture to trace the alert back to its source. I identified the infected endpoint (IP, MAC, hostname) and traced the compromised user's full identity through Active Directory traffic, Kerberos for the account name, SAMR for the full name, the same approach I'd used in my earlier investigations. I then confirmed the malicious C2 traffic by recognizing a recurring pattern of TLS handshakes alternating with plaintext HTTP requests to API-style endpoints (`/api/set_agent?id=`), which matched Lumma Stealer's known victim-fingerprinting behavior, and extracted the associated C2 domain from the HTTP Host header. This investigation reinforced that credential-stealing malware often communicates over standard web ports to stay inconspicuous, and that spotting it requires recognizing behavioral patterns in the traffic, not just flagging unencrypted protocols.
+
+[Full write-up →](02-Lumma-in-the-Room-ah/)
 ## Methodology (applied to each investigation)
 
 1. Identify the infected host — IP, MAC address, hostname
